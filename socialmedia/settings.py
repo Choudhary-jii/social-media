@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-)4b_2-i(t4r2h-m0gip2)^x*(@oghtvg&1g-rw3yu5og=83d+8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aayush.choudhary0078.pythonanywhere.com', 'aayush.choudhary0078.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['aayush.choudhary0078.pythonanywhere.com', 'socialmediacodenicely.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 
 AUTH_USER_MODEL = 'core.CustomUser'
