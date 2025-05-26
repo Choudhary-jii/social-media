@@ -1,0 +1,18 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+env/
+
+# VSCode or IntelliJ settings
+.vscode/
+.idea/
+
+# macOS files
+.DS_Store
+
+# Python logs
+*.log
