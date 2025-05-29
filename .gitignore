@@ -14,5 +14,8 @@ env/
 # macOS files
 .DS_Store
 
+db.sqlite3
+
+
 # Python logs
 *.log
