@@ -15,9 +15,13 @@ from .views import (
     MessageListCreateView,
     GroupListView,
     GroupCreateView,
-    GroupDetailUpdateView,
+    #GroupDetailUpdateView,
     GroupDetailView,
     GroupMessageListCreateView,
+    UpdateGroupPhotoView,
+    AddGroupMemberView,
+    RemoveGroupMemberView,
+    ToggleAdminStatusView
 )
 
 urlpatterns = [
@@ -26,11 +30,17 @@ urlpatterns = [
     # Separate list and create routes for groups
     path('groups/', GroupListView.as_view(), name='group-list'),                  # GET all groups
     path('groups/create/', GroupCreateView.as_view(), name='group-create'),       # POST to create a group
-    path('groups/<uuid:id>/', GroupDetailUpdateView.as_view(), name='group-update'),  # GET, PUT, PATCH (update)
+    #path('groups/<uuid:id>/', GroupDetailUpdateView.as_view(), name='group-update'),  # GET, PUT, PATCH (update)
 
     # Group detail for admin actions (GET, PUT/PATCH, DELETE with admin permission)
     path('group-details/<uuid:pk>/', GroupDetailView.as_view(), name='group-detail'),
 
     # Group messages
     path('group-messages/', GroupMessageListCreateView.as_view(), name='group-messages'),
+
+    path('groups/<uuid:id>/update-photo/', UpdateGroupPhotoView.as_view(), name='update-group-photo'),
+    path('groups/<uuid:id>/add-member/', AddGroupMemberView.as_view(), name='add-group-member'),
+    path('groups/<uuid:id>/remove-member/<uuid:user_id>/', RemoveGroupMemberView.as_view(), name='remove-group-member'),
+    path('groups/<uuid:id>/toggle-admin/', ToggleAdminStatusView.as_view(), name='toggle-admin'),
+
 ]

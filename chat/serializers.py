@@ -9,7 +9,7 @@ from core.models import CustomUser
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email']  
+        fields = ['id', 'username', 'email', 'profile_photo']  
 
 
 class MessageSerializer(serializers.ModelSerializer):
@@ -89,30 +89,30 @@ class GroupSerializer(serializers.ModelSerializer):
                 )
         return group
 
-    def update(self, instance, validated_data):
-        members_data = self.initial_data.get('members', [])
-        # members_data = validated_data.pop('members', None)
+    # def update(self, instance, validated_data):
+    #     members_data = self.initial_data.get('members', [])
+    #     # members_data = validated_data.pop('members', None)
 
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        instance.save()
+    #     for attr, value in validated_data.items():
+    #         setattr(instance, attr, value)
+    #     instance.save()
 
-        if members_data is not None:
-            GroupMember.objects.filter(group=instance).exclude(user=instance.creator).delete()
-            for member_data in members_data:
-                user_id = member_data.get('user_id')
-                if user_id != instance.creator.id:
-                    try:
-                        user = CustomUser.objects.get(id=user_id)
-                    except CustomUser.DoesNotExist:
-                        raise ValidationError({'user_id': f'User with id {user_id} does not exist.'})
-                    GroupMember.objects.create(
-                        group=instance,
-                        user=user,
-                        is_admin=member_data.get('is_admin', False)
-                    )
+    #     if members_data is not None:
+    #         GroupMember.objects.filter(group=instance).exclude(user=instance.creator).delete()
+    #         for member_data in members_data:
+    #             user_id = member_data.get('user_id')
+    #             if user_id != instance.creator.id:
+    #                 try:
+    #                     user = CustomUser.objects.get(id=user_id)
+    #                 except CustomUser.DoesNotExist:
+    #                     raise ValidationError({'user_id': f'User with id {user_id} does not exist.'})
+    #                 GroupMember.objects.create(
+    #                     group=instance,
+    #                     user=user,
+    #                     is_admin=member_data.get('is_admin', False)
+    #                 )
 
-        return instance
+    #     return instance
 
 
 class GroupMessageSerializer(serializers.ModelSerializer):

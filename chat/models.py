@@ -49,7 +49,7 @@ class GroupMember(MasterClass):
     date_joined = models.DateTimeField(auto_now_add=True)  # NEW FIELD
 
     class Meta:
-        unique_together = ('group', 'user')
+        # unique_together = ('group', 'user')
         ordering = ['date_joined']
 
     def __str__(self):

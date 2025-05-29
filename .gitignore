@@ -16,6 +16,5 @@ env/
 
 db.sqlite3
 
-
 # Python logs
 *.log

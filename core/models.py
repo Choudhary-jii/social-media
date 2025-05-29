@@ -9,7 +9,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=150)
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True, unique = True)
     bio = models.TextField(blank=True)
     profile_photo = models.ImageField(upload_to='profiles/', blank=True, null=True)
 
@@ -44,6 +44,12 @@ class Post(models.Model):
 
     def likes_count(self):
         return self.likes.count()
+    
+    def __str__(self):
+        return f"{self.id}"
+    
+    
+
 
 class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -52,3 +58,6 @@ class Comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+    def __str__(self):
+        return str(self.id)
