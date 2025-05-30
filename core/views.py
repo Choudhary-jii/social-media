@@ -34,6 +34,7 @@ class UserViewSet(viewsets.ViewSet):
     Handles register, retrieve, update, delete profile.
     """
     lookup_field = 'id'
+    queryset = CustomUser.objects.all()
 
     @extend_schema(
         request=UserRegisterSerializer,
