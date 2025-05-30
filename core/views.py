@@ -101,7 +101,40 @@ class UserViewSet(viewsets.ViewSet):
         serializer = UserDetailSerializer(users, many=True)
         return Response(serializer.data)
     
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def follow(self, request, id=None):
+        target_user = get_object_or_404(CustomUser, id=id)
+        if target_user == request.user:
+            return Response({'error': "You can't follow yourself."}, status=400)
 
+        target_user.followers.add(request.user)
+        return Response({'message': f'You are now following {target_user.username}'}, status=200)
+
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def unfollow(self, request, id=None):
+        target_user = get_object_or_404(CustomUser, id=id)
+        if target_user == request.user:
+            return Response({'error': "You can't unfollow yourself."}, status=400)
+
+        target_user.followers.remove(request.user)
+        return Response({'message': f'You have unfollowed {target_user.username}'}, status=200)
+    
+
+    @action(detail=True, methods=['get'], permission_classes=[IsAuthenticated])
+    def followers(self, request, id=None):
+        user = get_object_or_404(CustomUser, id=id)
+        followers = user.followers.all()
+        serializer = UserDetailSerializer(followers, many=True)
+        return Response(serializer.data, status=200)
+
+
+    @action(detail=True, methods=['get'], permission_classes=[IsAuthenticated])
+    def following(self, request, id=None):
+        user = get_object_or_404(CustomUser, id=id)
+        following = user.following.all()
+        serializer = UserDetailSerializer(following, many=True)
+        return Response(serializer.data, status=200)
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -179,7 +212,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
+ 
     def perform_update(self, serializer):
         comment = self.get_object()
         if comment.user != self.request.user:
