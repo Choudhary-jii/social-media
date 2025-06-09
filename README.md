@@ -1,113 +1,113 @@
-Overview
+# Social Media Backend (Django + DRF)
 
-This project is a full-featured social media platform built using Django and Django REST Framework (DRF). It offers functionalities such as user registration (multiple users), authentication, profile management, posting content, commenting, liking posts, following/unfollowing users, and real-time chat features including one-one and group chats as well.
+This project is a full-featured social media platform built using **Django** and **Django REST Framework (DRF)**.  
+It offers functionalities such as:
+- User registration & authentication (JWT)
+- Profile management
+- Posting content, commenting, and liking posts
+- Follow/Unfollow functionality
+- Real-time **one-to-one** and **group chat** features
 
-Live Admin Panel: (not sharing the link here!)
+> **Note:** Live Admin Panel hosted — (link not shared publicly)
 
-GitHub Repository: https://github.com/Choudhary-jii/social-media
+### 🔗 Links:
+- **GitHub Repository:** [https://github.com/Choudhary-jii/social-media](https://github.com/Choudhary-jii/social-media)
+- **Postman Documentation:** [https://documenter.getpostman.com/view/39033838/2sB2qfBfHH](https://documenter.getpostman.com/view/39033838/2sB2qfBfHH)
 
-Postman Documentation: https://documenter.getpostman.com/view/39033838/2sB2qfBfHH
+---
 
------------------------------------------------------------------------------------------------
+## 🚀 Features
 
-Features 
+### 👤 User Management:
+- **Registration:** Users can register by providing necessary details.
+- **Authentication:** JWT-based authentication using `TokenObtainPairView` and `TokenRefreshView`.
 
-User Management : 
+### 🙍‍♂️ Profile Management:
+- **Retrieve Profile:** Fetch user details using their UUID.
+- **Update Profile:** Authenticated users can update their profile information.
+- **Delete Profile:** Authenticated users can delete their profile.
 
-Registration: Users can register by providing necessary details.
+### ➕ Follow / Unfollow:
+- **Follow User:** Authenticated users can follow others.
+- **Unfollow User:** Authenticated users can unfollow others.
+- **List Followers:** Get followers of a specific user.
+- **List Following:** Get list of users followed by a specific user.
 
-Authentication: JWT-based authentication using TokenObtainPairView and TokenRefreshView.
+---
 
-Profile Management:
+### 📝 Posts:
+- **Create Post:** Authenticated users can create new posts.
+- **Retrieve Posts:**
+  - Admins can view all posts.
+  - Regular users can view their own posts.
+- **Retrieve Specific Post:** Fetch post by ID.
+- **Update/Delete Post:** Authenticated users can update or delete their own posts.
+- **Like/Unlike Post:** Toggle like status.
 
-Retrieve Profile: Fetch user details using their UUID.
-Update Profile: Authenticated users can update their profile information.
-Delete Profile: Authenticated users can delete their profile.
+---
 
-Follow/Unfollow:
+### 💬 Comments:
+- **Create Comment:** Authenticated users can comment on posts.
+- **Retrieve Comments:**
+  - View all comments.
+  - Fetch a specific comment by ID.
+- **Update/Delete Comment:** Authenticated users can manage their own comments.
 
-Follow User: Authenticated users can follow other users.
-Unfollow User: Authenticated users can unfollow other users.
-List Followers: Retrieve a list of followers for a specific user.
-List Following: Retrieve a list of users that a specific user is following.
+---
 
-Posts :
+### 💬 Chat & Group Chat:
+- **Private Chat:** Real-time messaging between two users.
 
-Create Post: Authenticated users can create new posts.
+#### Group Chat:
+- **Create Group**
+- **Add/Remove Members**
+- **Send Messages**
+- **List Messages**
 
-Retrieve Posts:
+---
 
-List Posts: Admins can view all posts; Regular users can view their own posts.
-Retrieve Specific Post: Fetch details of a specific post using its ID.
 
-Update/Delete Post: Authenticated users can update or delete their own posts.
+## 🧰 Technologies Used
 
-Like/Unlike Post: Toggle like status on a post.
+| Area                  | Technology                                    |
+|-----------------------|-----------------------------------------------|
+| **Backend**           | [Django](https://www.djangoproject.com/), [Django REST Framework](https://www.django-rest-framework.org/) |
+| **Authentication**    | [JWT](https://jwt.io/) via `djangorestframework-simplejwt` |
+| **Database**          | SQLite (default) – Easily swappable with PostgreSQL or MySQL |
+| **Real-time Chat**    | Implemented using custom models for one-on-one and group messaging |
+| **API Documentation** | [Postman](https://www.postman.com/) |
 
-Comments :
 
-Create Comment: Authenticated users can comment on posts.
+---
 
-Retrieve Comments:
+## ⚙️ Setup & Installation
 
-List Comments: View all comments.
-Retrieve Specific Comment: Fetch details of a specific comment using its ID.
-
-Update/Delete Comment: Authenticated users can update or delete their own comments.
-
-Chat & Group Chat :
-
-Private Chat: Real-time messaging between two users.
-
-Group Chat:
-
-Create Group: Users can create chat groups.
-Add/Remove Members: Manage group members.
-Send Messages: Send messages within a group.
-List Messages: Retrieve all messages from a group.
-
------------------------------------------------------------------------------------------------
-
-Setup & Installation
-
-Clone the Repository:
-
+### 🔁 Clone the Repository:
+```bash
 git clone https://github.com/Choudhary-jii/social-media.git
 cd social-media
 
-Create a Virtual Environment:
 
-python -m venv venv
-source venv/bin/activate
 
-Install Dependencies:
+### ➕ Create a Virtual Environment:
+- **python -m venv venv**
+- **source venv/bin/activate**
 
-pip install -r requirements.txt
+---
 
-Apply Migrations:
 
-python manage.py migrate
+### Install Dependencies:
+- pip install -r requirements.txt
 
-Run the Development Server:
 
-python manage.py runserver
+---
 
------------------------------------------------------------------------------------------------
+### Apply Migrations:
+-python manage.py migrate
 
-Technologies Used
+---
 
-Backend: Django, Django REST Framework
+### Run the Development Server:
+-python manage.py runserver
 
-Authentication: JWT (JSON Web Tokens) via djangorestframework-simplejwt
-
-Database: SQLite (default, can be changed to PostgreSQL/MySQL)
-
-Real-time Communication: A Separate Model (Tables)
-
-API Documentation: Postman
-
------------------------------------------------------------------------------------------------
-
-NOTE 
-
-User Management In Postman Documentation : Update the base URL from LocalHost to 'https://socialmediacodenicely.pythonanywhere.com'.
+---
